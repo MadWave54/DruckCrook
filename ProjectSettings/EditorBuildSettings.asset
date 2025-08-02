@@ -15,6 +15,15 @@ EditorBuildSettings:
     path: Assets/Druck Crook/Scenes/Settings.unity
     guid: 4981ba5e0c8a64e528074dee29baeb7c
   - enabled: 1
-    path: Assets/Druck Crook/Scenes/Guide.unity
+    path: Assets/Druck Crook/Scenes/Shop.unity
     guid: decfb5357aedf494b9701da3585716ed
+  - enabled: 1
+    path: Assets/Druck Crook/Scenes/Guide.unity
+    guid: a72c65915cbff445dad19223f2081636
+  - enabled: 1
+    path: Assets/Druck Crook/Scenes/GameMode.unity
+    guid: 976a48bd6dd164f78916a511837ee726
+  - enabled: 1
+    path: Assets/Druck Crook/Scenes/Game.unity
+    guid: e6584ed48bc194755ad0897b4b249f27
   m_configObjects: {}

@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class Preparing_Manager : MonoBehaviour
+public class PreparingManager : MonoBehaviour
 {
 
     [SerializeField] private float WaitTime;
@@ -30,6 +30,19 @@ public class Preparing_Manager : MonoBehaviour
             Percent += 1;
 
             WaitPercentText.text = Percent.ToString() + "%";
+
+        }
+
+        if (PlayerPrefs.GetInt("Set") == 0)
+        {
+
+            PlayerPrefs.SetInt("Set", 1);
+            PlayerPrefs.SetInt("isBought_0", 1);
+            PlayerPrefs.SetFloat("Music", 1);
+            PlayerPrefs.SetFloat("SFX", 1);
+            PlayerPrefs.SetFloat("Vibration", 1);
+
+            PlayerPrefs.Save();
 
         }
 

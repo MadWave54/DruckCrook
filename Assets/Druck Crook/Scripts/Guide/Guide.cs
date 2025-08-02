@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,15 +5,15 @@ using UnityEngine.UI;
 public class Guide : MonoBehaviour
 {
 
-    [SerializeField] private Image ImageText;
-    [SerializeField] private Sprite[] Texts;
+    [SerializeField] private Image imageText;
+    [SerializeField] private Sprite[] texts;
 
     private int Index;
 
     private void Update()
     {
 
-        ImageText.sprite = Texts[Index];
+        imageText.sprite = texts[Index];
 
     }
 
@@ -29,7 +27,7 @@ public class Guide : MonoBehaviour
     public void Next()
     {
 
-        if (Index < Texts.Length - 1)
+        if (Index < texts.Length - 1)
         {
 
             Index++;

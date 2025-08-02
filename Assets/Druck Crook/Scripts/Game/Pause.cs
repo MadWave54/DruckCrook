@@ -1,15 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Settings : MonoBehaviour
+public class Pause : MonoBehaviour
 {
 
-    [SerializeField] private GameObject resetUI;
+    [SerializeField] private GameObject pauseUI;
+
+    [SerializeField] private GameObject[] tags;
+
+    [SerializeField] private Image icon;
+    [SerializeField] private Sprite[] iconSprites;
 
     [SerializeField] private Image[] buttonsBackImages;
     [SerializeField] private GameObject[] buttonsSwitchGO;
     [SerializeField] private Sprite[] buttonsBackSprites;
+
+    private bool isOpen;
 
     private void Update()
     {
@@ -93,13 +102,6 @@ public class Settings : MonoBehaviour
             }
 
         }
-
-    }
-
-    public void Returns()
-    {
-
-        SceneManager.LoadScene("Menu");
 
     }
 
@@ -192,24 +194,50 @@ public class Settings : MonoBehaviour
 
     }
 
-    public void ResetButton()
+    public void OpenOrClose()
     {
 
-        resetUI.SetActive(true);
+        if (!isOpen)
+        {
+
+            tags[0].SetActive(false);
+            tags[1].SetActive(true);
+
+            pauseUI.SetActive(true);
+
+            icon.sprite = iconSprites[1];
+
+            isOpen = true;
+
+        }
+
+        else if (isOpen)
+        {
+
+            tags[0].SetActive(true);
+            tags[1].SetActive(false);
+
+            pauseUI.SetActive(false);
+
+            icon.sprite = iconSprites[0];
+
+            isOpen = false;
+
+        }
 
     }
 
-    public void ResetCancel()
+    public void Restart()
     {
 
-        resetUI.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
 
-    public void ResetAccept()
+    public void Menu()
     {
 
-        resetUI.SetActive(false);
+        SceneManager.LoadScene("Menu");
 
     }
 

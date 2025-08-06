@@ -46,7 +46,7 @@ public class PreparingManager : MonoBehaviour
 
         }
 
-        SceneManager.LoadScene("Menu");
+        GameObject.FindGameObjectWithTag("SceneSwap").GetComponent<SceneSwap>().NextScene("Menu");
 
     }
 

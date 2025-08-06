@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -6,10 +7,18 @@ public class Settings : MonoBehaviour
 {
 
     [SerializeField] private GameObject resetUI;
+    private Animator resetUIAnimator;
 
     [SerializeField] private Image[] buttonsBackImages;
     [SerializeField] private GameObject[] buttonsSwitchGO;
     [SerializeField] private Sprite[] buttonsBackSprites;
+
+    private void Start()
+    {
+
+        resetUIAnimator = resetUI.GetComponent<Animator>();
+
+    }
 
     private void Update()
     {
@@ -99,7 +108,18 @@ public class Settings : MonoBehaviour
     public void Returns()
     {
 
-        SceneManager.LoadScene("Menu");
+        try
+        {
+
+            GameObject.FindGameObjectWithTag("SceneSwap").GetComponent<SceneSwap>().NextScene("Menu");
+
+        }
+        catch (System.Exception ex)
+        {
+
+            SceneManager.LoadScene("Menu");
+
+        }
 
     }
 
@@ -195,21 +215,49 @@ public class Settings : MonoBehaviour
     public void ResetButton()
     {
 
-        resetUI.SetActive(true);
+        StartCoroutine(AnimatorResetUI());
 
     }
 
     public void ResetCancel()
     {
 
-        resetUI.SetActive(false);
+        StartCoroutine(AnimatorResetUI());
 
     }
 
     public void ResetAccept()
     {
 
-        resetUI.SetActive(false);
+        StartCoroutine(AnimatorResetUI());
+
+    }
+
+    private IEnumerator AnimatorResetUI()
+    {
+
+        bool isUI = false;
+
+        if (!resetUI.active)
+        {
+
+            isUI = true;
+
+            resetUI.SetActive(true);
+
+        }
+
+        resetUIAnimator.SetBool("isOpen", !resetUIAnimator.GetBool("isOpen"));
+
+        yield return new WaitForEndOfFrame();
+        yield return new WaitWhile(() => resetUIAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f || resetUIAnimator.IsInTransition(0));
+
+        if (resetUI.active && !isUI)
+        {
+
+            resetUI.SetActive(false);
+
+        }
 
     }
 

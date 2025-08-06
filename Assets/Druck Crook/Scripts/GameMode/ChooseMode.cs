@@ -7,14 +7,36 @@ public class ChooseMode : MonoBehaviour
     public void Next(string NameScene)
     {
 
-        SceneManager.LoadScene(NameScene);
+        try
+        {
+
+            GameObject.FindGameObjectWithTag("SceneSwap").GetComponent<SceneSwap>().NextScene(NameScene);
+
+        }
+        catch (System.Exception ex)
+        {
+
+            SceneManager.LoadScene(NameScene);
+
+        }
 
     }
 
     public void Returns()
     {
 
-        SceneManager.LoadScene("Menu");
+        try
+        {
+
+            GameObject.FindGameObjectWithTag("SceneSwap").GetComponent<SceneSwap>().NextScene("Menu");
+
+        }
+        catch (System.Exception ex)
+        {
+
+            SceneManager.LoadScene("Menu");
+
+        }
 
     }
 

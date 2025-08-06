@@ -536,6 +536,7 @@ GameObject:
   - component: {fileID: 830405359}
   - component: {fileID: 830405361}
   - component: {fileID: 830405360}
+  - component: {fileID: 830405362}
   m_Layer: 5
   m_Name: TagSceneBox
   m_TagString: Untagged
@@ -602,6 +603,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830405358}
   m_CullTransparentMesh: 1
+--- !u!95 &830405362
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830405358}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eb7b8f8f553e942da86956294b05554f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &928230452
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,6 +816,7 @@ GameObject:
   - component: {fileID: 1300166469}
   - component: {fileID: 1300166468}
   - component: {fileID: 1300166470}
+  - component: {fileID: 1300166471}
   m_Layer: 5
   m_Name: Return
   m_TagString: Untagged
@@ -917,6 +939,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &1300166471
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300166466}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3044e8e6bce4c442daf20af5a6162034, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1418537414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,6 +1123,7 @@ GameObject:
   - component: {fileID: 1599117542}
   - component: {fileID: 1599117541}
   - component: {fileID: 1599117543}
+  - component: {fileID: 1599117544}
   m_Layer: 5
   m_Name: Company
   m_TagString: Untagged
@@ -1203,6 +1246,26 @@ MonoBehaviour:
           m_StringArgument: Game
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &1599117544
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599117539}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3eb179e72933a408cade037f503b81f8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1696937344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,6 +1278,7 @@ GameObject:
   - component: {fileID: 1696937347}
   - component: {fileID: 1696937346}
   - component: {fileID: 1696937348}
+  - component: {fileID: 1696937349}
   m_Layer: 5
   m_Name: Train
   m_TagString: Untagged
@@ -1337,6 +1401,26 @@ MonoBehaviour:
           m_StringArgument: Game
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &1696937349
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696937344}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b14a60e65bb8491c9e88588731c847f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1890296371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,6 +1433,7 @@ GameObject:
   - component: {fileID: 1890296374}
   - component: {fileID: 1890296373}
   - component: {fileID: 1890296375}
+  - component: {fileID: 1890296376}
   m_Layer: 5
   m_Name: Arcade
   m_TagString: Untagged
@@ -1471,6 +1556,26 @@ MonoBehaviour:
           m_StringArgument: Game
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &1890296376
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890296371}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c9d41b68afc324a9ab880f0119b64444, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1936434561
 GameObject:
   m_ObjectHideFlags: 0

@@ -2307,6 +2307,7 @@ GameObject:
   - component: {fileID: 830405359}
   - component: {fileID: 830405361}
   - component: {fileID: 830405360}
+  - component: {fileID: 830405362}
   m_Layer: 5
   m_Name: TagSceneBox
   m_TagString: Untagged
@@ -2373,6 +2374,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830405358}
   m_CullTransparentMesh: 1
+--- !u!95 &830405362
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830405358}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d0a680a52d9d464daf8c63ceac0660c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &925355655
 GameObject:
   m_ObjectHideFlags: 0
@@ -3016,6 +3037,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1159194666}
+  - component: {fileID: 1159194667}
   m_Layer: 5
   m_Name: Warning
   m_TagString: Untagged
@@ -3047,6 +3069,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1159194667
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159194665}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2c15b0703d32484dbe3c03eb082481d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1168167482
 GameObject:
   m_ObjectHideFlags: 0
@@ -3576,6 +3618,7 @@ GameObject:
   - component: {fileID: 1300166469}
   - component: {fileID: 1300166468}
   - component: {fileID: 1300166470}
+  - component: {fileID: 1300166471}
   m_Layer: 5
   m_Name: Return
   m_TagString: Untagged
@@ -3698,6 +3741,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &1300166471
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300166466}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d3b0a770974c54ff2b5811c4747bc226, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1342263635
 GameObject:
   m_ObjectHideFlags: 0
@@ -4494,6 +4557,7 @@ GameObject:
   - component: {fileID: 1766646185}
   - component: {fileID: 1766646187}
   - component: {fileID: 1766646186}
+  - component: {fileID: 1766646188}
   m_Layer: 5
   m_Name: BackMainUI
   m_TagString: Untagged
@@ -4568,6 +4632,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1766646184}
   m_CullTransparentMesh: 1
+--- !u!95 &1766646188
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766646184}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f257421e133048eea3020b8450b26ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1872544534
 GameObject:
   m_ObjectHideFlags: 0

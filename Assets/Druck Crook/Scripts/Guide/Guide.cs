@@ -20,7 +20,18 @@ public class Guide : MonoBehaviour
     public void Returns()
     {
 
-        SceneManager.LoadScene("Menu");
+        try
+        {
+
+            GameObject.FindGameObjectWithTag("SceneSwap").GetComponent<SceneSwap>().NextScene("Menu");
+
+        }
+        catch (System.Exception ex)
+        {
+
+            SceneManager.LoadScene("Menu");
+
+        }
 
     }
 

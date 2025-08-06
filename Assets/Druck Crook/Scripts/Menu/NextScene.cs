@@ -7,7 +7,18 @@ public class NextScene : MonoBehaviour
     public void Next(string NameScene)
     {
 
-        SceneManager.LoadScene(NameScene);
+        try
+        {
+
+            GameObject.FindGameObjectWithTag("SceneSwap").GetComponent<SceneSwap>().NextScene(NameScene);
+
+        }
+        catch (System.Exception ex)
+        {
+
+            SceneManager.LoadScene(NameScene);
+
+        }
 
     }
 

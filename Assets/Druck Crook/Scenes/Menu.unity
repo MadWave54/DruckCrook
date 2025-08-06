@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 428665661}
   - component: {fileID: 428665663}
   - component: {fileID: 428665662}
+  - component: {fileID: 428665664}
   m_Layer: 5
   m_Name: LineDown
   m_TagString: Untagged
@@ -333,6 +334,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 428665660}
   m_CullTransparentMesh: 1
+--- !u!95 &428665664
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428665660}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ea64261fa699a4d1287a811e2ee36040, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &475963165
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,6 +832,7 @@ GameObject:
   - component: {fileID: 806668836}
   - component: {fileID: 806668838}
   - component: {fileID: 806668837}
+  - component: {fileID: 806668839}
   m_Layer: 5
   m_Name: LineUp
   m_TagString: Untagged
@@ -876,6 +898,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806668835}
   m_CullTransparentMesh: 1
+--- !u!95 &806668839
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806668835}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ebff0e1aaea584b459ab6d1f9ca41635, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &922321119
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,6 +927,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 922321120}
+  - component: {fileID: 922321121}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -916,6 +959,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &922321121
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922321119}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e21d1f43415384980b051b6db5c5dc28, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &928230452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1690,6 +1753,7 @@ GameObject:
   - component: {fileID: 1493291245}
   - component: {fileID: 1493291247}
   - component: {fileID: 1493291246}
+  - component: {fileID: 1493291248}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -1755,6 +1819,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493291244}
   m_CullTransparentMesh: 1
+--- !u!95 &1493291248
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493291244}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d18ec54aa52db4cb984206b71431ca98, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1776609520
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,11 +14,25 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private Image buttonBuyOrSelectImageText;
     [SerializeField] private Sprite[] buttonBuyOrSelectTexts;
 
-    [SerializeField] private GameObject CostGO;
+    [SerializeField] private GameObject costGO;
+
+    [SerializeField] private GameObject iconSwap;
+    private Image iconSwapImage;
+    private Animator iconSwapAnimator;
 
     private int indexNow;
 
-    private bool readyToBuy, readyToSelect;
+    private bool readyToBuy, readyToSelect, readyToSwap;
+
+    private void Start()
+    {
+
+        iconSwapAnimator = iconSwap.GetComponent<Animator>();
+        iconSwapImage = iconSwap.GetComponent<Image>();
+
+        readyToSwap = true;
+
+    }
 
     private void Update()
     {
@@ -29,15 +44,28 @@ public class ShopManager : MonoBehaviour
     public void Returns()
     {
 
-        SceneManager.LoadScene("Menu");
+        try
+        {
+
+            GameObject.FindGameObjectWithTag("SceneSwap").GetComponent<SceneSwap>().NextScene("Menu");
+
+        }
+        catch (System.Exception ex)
+        {
+
+            SceneManager.LoadScene("Menu");
+
+        }
 
     }
 
     public void Next()
     {
 
-        if (indexNow < scinsSprite.Length - 1)
+        if (indexNow < scinsSprite.Length - 1 && readyToSwap)
         {
+
+            StartCoroutine(SwapAnimation(1, indexNow));
 
             indexNow++;
 
@@ -48,8 +76,10 @@ public class ShopManager : MonoBehaviour
     public void Undo()
     {
 
-        if (indexNow > 0)
+        if (indexNow > 0 && readyToSwap)
         {
+
+            StartCoroutine(SwapAnimation(2, indexNow));
 
             indexNow--;
 
@@ -87,7 +117,7 @@ public class ShopManager : MonoBehaviour
 
             }
 
-            CostGO.SetActive(false);
+            costGO.SetActive(false);
 
             readyToBuy = false;
 
@@ -99,7 +129,7 @@ public class ShopManager : MonoBehaviour
             buttonBuyOrSelectImageBack.sprite = buttonBuyOrSelectSpritesBack[2];
             buttonBuyOrSelectImageText.sprite = buttonBuyOrSelectTexts[2];
 
-            CostGO.SetActive(true);
+            costGO.SetActive(true);
 
             readyToBuy = true;
 
@@ -136,6 +166,28 @@ public class ShopManager : MonoBehaviour
             PlayerPrefs.Save();
 
         }
+
+    }
+
+    private IEnumerator SwapAnimation(int DirectionIndex, int indexWas)
+    {
+
+        readyToSwap = false;
+
+        iconSwapImage.sprite = scinsSprite[indexWas];
+
+        iconSwap.SetActive(true);
+
+        iconSwapAnimator.SetInteger("Direction", DirectionIndex);
+
+        yield return new WaitForEndOfFrame();
+        yield return new WaitWhile(() => iconSwapAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f || iconSwapAnimator.IsInTransition(0));
+
+        iconSwap.SetActive(false);
+
+        iconSwapAnimator.SetInteger("Direction", 0);
+
+        readyToSwap = true;
 
     }
 

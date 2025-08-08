@@ -60,14 +60,21 @@ public class CreatingBacks : MonoBehaviour
 
         }
 
-        bool IsOutside = IsOutsideCamera();
+        //bool IsOutside = IsOutsideCamera();
 
-        if (IsOutside)
-        {
+        //if (IsOutside)
+        //{
 
-            Destroy(this.gameObject);
+        //    this.gameObject.SetActive(false);
 
-        }
+        //}
+
+        //else
+        //{
+
+        //    this.gameObject.SetActive(true);
+
+        //}
         
     }
 

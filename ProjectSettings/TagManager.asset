@@ -6,11 +6,13 @@ TagManager:
   tags:
   - SceneSwap
   - Backs
+  - Platform
+  - Platforms
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - OP
   - Water
   - UI
   - 

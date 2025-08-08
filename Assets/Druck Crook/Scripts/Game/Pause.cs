@@ -207,6 +207,8 @@ public class Pause : MonoBehaviour
 
             icon.sprite = iconSprites[1];
 
+            Time.timeScale = 0;
+
             isOpen = true;
 
         }
@@ -221,6 +223,8 @@ public class Pause : MonoBehaviour
 
             icon.sprite = iconSprites[0];
 
+            Time.timeScale = 1;
+
             isOpen = false;
 
         }
@@ -230,12 +234,16 @@ public class Pause : MonoBehaviour
     public void Restart()
     {
 
+        Time.timeScale = 1;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
 
     public void Menu()
     {
+
+        Time.timeScale = 1;
 
         SceneManager.LoadScene("Menu");
 

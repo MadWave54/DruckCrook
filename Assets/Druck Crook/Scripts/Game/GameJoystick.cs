@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameJoystick : MonoBehaviour
 {
@@ -48,14 +49,14 @@ public class GameJoystick : MonoBehaviour
 
         isReadyToFly = IsStandingOn();
 
-        if (Input.GetMouseButtonDown(0) && isReadyToFly)
+        if (Input.GetMouseButtonDown(0) && isReadyToFly && !IsPointerOverUI())
         {
 
             Jump();
 
         }
 
-        else if (Input.GetMouseButtonDown(0) && isRope)
+        else if (Input.GetMouseButtonDown(0) && isRope && !IsPointerOverUI())
         {
 
             Fall();
@@ -197,6 +198,13 @@ public class GameJoystick : MonoBehaviour
         }
 
         return false;
+
+    }
+
+    private bool IsPointerOverUI()
+    {
+
+        return EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
 
     }
 

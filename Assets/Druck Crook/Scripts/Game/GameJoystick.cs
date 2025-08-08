@@ -39,6 +39,8 @@ public class GameJoystick : MonoBehaviour
         lineRenderer.endWidth = 0.05f;
         lineRenderer.enabled = false;
 
+        isReadyToFly = true;
+
     }
 
     private void Update()
@@ -134,10 +136,10 @@ public class GameJoystick : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
 
-        if (!isFly && collision.tag == "Platform")
+        if (isReadyToFly && collision.tag == "Platform" && !isRope)
         {
 
             Platform PlatformDB = collision.GetComponent<Platform>();

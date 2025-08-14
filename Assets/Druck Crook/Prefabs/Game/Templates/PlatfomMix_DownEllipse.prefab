@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1382998784976042560
+--- !u!1 &2155862427822749940
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3452784020977264856}
+  - component: {fileID: 6389295785421565244}
   m_Layer: 0
   m_Name: PositionsText
   m_TagString: Untagged
@@ -16,13 +16,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3452784020977264856
+--- !u!4 &6389295785421565244
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382998784976042560}
+  m_GameObject: {fileID: 2155862427822749940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.655, y: -2.2, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -223,14 +223,14 @@ MonoBehaviour:
   ThisSample: 0
   mainPositions: {fileID: 3544688432383838750}
   platformTemplates:
-  - {fileID: 3544688432383838751}
+  - {fileID: 3544688432383838751, guid: 0c14fd912ddcb4d888c36bb56c01d242, type: 3}
   - {fileID: 3544688432383838751, guid: 5a98a927225e04297912434901d016a6, type: 3}
-  - {fileID: 3544688432383838751, guid: 39d110c0316f94075b11d6f21db8eab4, type: 3}
+  - {fileID: 3544688432383838751}
   - {fileID: 3544688432383838751, guid: dbaf9d32f07ac42d786b4690e2732dd5, type: 3}
   - {fileID: 3544688432383838751, guid: 30c467f8a33ba4593a8b6a1776d2bbd0, type: 3}
   - {fileID: 3544688432383838751, guid: 03a7f75d09a1a437bbeea6a941e114d7, type: 3}
   prefabsText: {fileID: 1679563657230982937, guid: 46c7380ef83b6412888d485ab9d89b20, type: 3}
-  positionsForText: {fileID: 3452784020977264856}
+  positionsForText: {fileID: 6389295785421565244}
 --- !u!50 &8039474651265025478
 Rigidbody2D:
   serializedVersion: 4
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 3544688432370626427}
   - component: {fileID: 6035929029491498567}
   - component: {fileID: 2317162889746783898}
-  - component: {fileID: 1939893975520268866}
+  - component: {fileID: 6844120583196027809}
   m_Layer: 0
   m_Name: Ellipse
   m_TagString: Ellipse
@@ -376,7 +376,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2
---- !u!114 &1939893975520268866
+--- !u!114 &6844120583196027809
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4fa6d5ebb60458ba244e7e34c13dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UsedEllipse: 0
+  UsedEllipse: 1
   isDisposable: 0
   isMore: 0
   isFinish: 0
@@ -402,7 +402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3544688432383838750}
   m_Layer: 0
-  m_Name: PlatfomMix
+  m_Name: PlatfomMix_DownEllipse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,7 +422,7 @@ Transform:
   m_Children:
   - {fileID: 3544688431902908142}
   - {fileID: 3544688432370626428}
-  - {fileID: 3452784020977264856}
+  - {fileID: 6389295785421565244}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

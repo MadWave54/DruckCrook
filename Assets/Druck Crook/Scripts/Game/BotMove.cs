@@ -1,35 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class GameJoystick : MonoBehaviour
+public class BotMove : MonoBehaviour
 {
 
     [SerializeField] private float jumpForce;
 
     [SerializeField] private float maxHeight;
-    private float startY;
+    private float startY, startFlyY, PlatformX;
 
-    private GameObject circleInstance, circleInstanceNew;
+    public GameObject circleInstance, circleInstanceNew;
     private LineRenderer lineRenderer;
 
     private Rigidbody2D rigidbody;
     private SpringJoint2D joint;
 
-    private Camera mainCamera;
-    private Renderer objectRenderer;
 
     private float checkDistance = 0.15f;
     [SerializeField] private LayerMask groundLayer;
 
-    private bool isFly, isRope, isReadyToFly;
+    private bool isFly, isRope, isReadyToFly, isStopIn;
 
     private Ellipse ellipseScriptSave;
 
     private void Start()
     {
-
-        mainCamera = Camera.main;
-        objectRenderer = GetComponent<Renderer>();
 
         rigidbody = GetComponent<Rigidbody2D>();
 
@@ -42,92 +38,78 @@ public class GameJoystick : MonoBehaviour
         lineRenderer.endWidth = 0.05f;
         lineRenderer.enabled = false;
 
-        isReadyToFly = true;
-
     }
 
     private void Update()
     {
 
-        isReadyToFly = OnPlatform();
-
-        if (isReadyToFly && circleInstance != null)
-        {
-
-            ellipseScriptSave = circleInstance.GetComponent<Ellipse>();
-
-            ellipseScriptSave.InPlatform();
-
-        }
-
-        if (Input.GetMouseButtonDown(0) && !IsPointerOverUI())
-        {
-
-            if (isReadyToFly)
-            {
-
-                Jump();
-
-            }
-
-            else if (isRope)
-            {
-
-                Fall();
-
-            }
-
-            else if (!isFly && transform.position.y >= startY)
-            {
-
-                if (circleInstanceNew != null)
-                {
-
-                    circleInstance = circleInstanceNew;
-                    circleInstanceNew = null;
-
-                }
-
-                float distanceX = Mathf.Abs(transform.position.x - circleInstance.transform.position.x);
-
-                if (!ellipseScriptSave.isDisposable && distanceX <= 2)
-                {
-
-                    Rope();
-
-                    isFly = true;
-
-                }
-
-            }
-
-        }
+        OnPlatform();
 
         if (isFly)
         {
 
-            if (((Input.GetMouseButtonUp(0) && !IsPointerOverUI()) || (transform.position.y >= startY + maxHeight)) && !isRope)
+            if ((transform.position.y >= startY + maxHeight) && !isRope)
             {
 
                 Rope();
 
             }
 
+            else if ((transform.position.y >= startFlyY - 0.8f) && isRope && circleInstance.transform.position.x < transform.position.x)
+            {
+
+                Fall();
+
+            }
+
+            //else if (transform.position.x >= PlatformX)
+            //{
+
+            //    rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
+
+            //    Fall();
+
+            //}
+
             lineRenderer.SetPosition(0, new Vector3(transform.position.x, transform.position.y, 0.02f));
             lineRenderer.SetPosition(1, new Vector3(circleInstance.transform.position.x, circleInstance.transform.position.y, 0.02f));
 
         }
 
-        bool IsOutside = IsOutsideCamera();
-
-        if (IsOutside)
+        if (!isFly && transform.position.y >= startY && circleInstanceNew != null)
         {
 
-            mainCamera.GetComponent<GameManager>().Lose();
+            circleInstance = circleInstanceNew;
+            circleInstanceNew = null;
 
-            gameObject.SetActive(false);
+            float distanceX = Mathf.Abs(transform.position.x - circleInstance.transform.position.x);
+
+            ellipseScriptSave = circleInstance.GetComponent<Ellipse>();
+
+            if (!ellipseScriptSave.isDisposable && distanceX <= 4 && ellipseScriptSave.isMore)
+            {
+
+                Rope();
+
+                isFly = true;
+
+            }
 
         }
+
+        if (transform.position.y < -5 )
+        {
+
+            Camera.main.GetComponent<GameManager>().Win();
+
+        }
+
+        //if (isStopIn)
+        //{
+
+        //    rigidbody.velocity = new Vector2(0, 0);
+
+        //}
 
     }
 
@@ -139,7 +121,16 @@ public class GameJoystick : MonoBehaviour
         if (ellipseScriptSave.UsedEllipse)
         {
 
-            ellipseScriptSave.Used();
+            ellipseScriptSave.UsedEllipseByBot();
+
+        }
+
+        if (ellipseScriptSave.isFinish)
+        {
+
+            isStopIn = true;
+
+            rigidbody.velocity = new Vector2(0, 0);
 
         }
 
@@ -156,9 +147,16 @@ public class GameJoystick : MonoBehaviour
     private void Jump()
     {
 
-        isFly = true;
+        if (!isFly)
+        {
 
-        rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
+
+            isFly = true;
+
+            rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+        }
 
     }
 
@@ -178,6 +176,8 @@ public class GameJoystick : MonoBehaviour
         joint.enableCollision = false;
 
         lineRenderer.enabled = true;
+
+        startFlyY = transform.position.y;
 
     }
 
@@ -201,9 +201,31 @@ public class GameJoystick : MonoBehaviour
             if (PlatformDB.ThisSample == 5)
             {
 
-                Camera.main.GetComponent<GameManager>().Win();
+                Camera.main.GetComponent<GameManager>().Lose();
 
             }
+
+            PlatformDB.CreateNewPlatform();
+
+            int multiplier = 1;
+
+            if (PlatformDB.ThisSample == 3)
+            {
+
+                multiplier = 2;
+
+            }
+
+            else if (PlatformDB.ThisSample == 4)
+            {
+
+                multiplier = 3;
+
+            }
+
+            PlatformX = collision.gameObject.transform.position.x + 4.292f * multiplier;
+
+            Jump();
 
         }
 
@@ -221,17 +243,7 @@ public class GameJoystick : MonoBehaviour
 
     }
 
-    public bool IsOutsideCamera()
-    {
-
-        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
-        bool isVisible = GeometryUtility.TestPlanesAABB(planes, objectRenderer.bounds);
-
-        return !isVisible;
-
-    }
-
-    bool OnPlatform()
+    private void OnPlatform()
     {
 
         RaycastHit2D hit_0 = Physics2D.Raycast(new Vector2(transform.position.x + 0.22f, transform.position.y - 0.35f), new Vector2(1, -1), checkDistance, groundLayer);
@@ -245,27 +257,45 @@ public class GameJoystick : MonoBehaviour
 
             Rigidbody2D hit_0Rb = hit_0.collider.attachedRigidbody;
 
+            if (circleInstance != null)
+            {
 
-            return hit_0Rb != null;
+                ellipseScriptSave = circleInstance.GetComponent<Ellipse>();
+                ellipseScriptSave.BotInPlatform();
+
+            }
+
+            isStopIn = false;
+
+            isReadyToFly = true;
 
         }
 
-        if (hit_1.collider != null)
+        else if (hit_1.collider != null)
         {
 
             Rigidbody2D hit_1Rb = hit_1.collider.attachedRigidbody;
-            return hit_1Rb != null;
+
+            if (circleInstance != null)
+            {
+
+                ellipseScriptSave = circleInstance.GetComponent<Ellipse>();
+                ellipseScriptSave.BotInPlatform();
+
+            }
+
+            isStopIn = false;
+
+            isReadyToFly = true;
 
         }
 
-        return false;
+        else
+        {
 
-    }
+            isReadyToFly = false;
 
-    private bool IsPointerOverUI()
-    {
-
-        return EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+        }
 
     }
 

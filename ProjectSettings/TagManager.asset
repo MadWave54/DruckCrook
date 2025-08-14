@@ -8,6 +8,8 @@ TagManager:
   - Backs
   - Platform
   - Platforms
+  - Ellipse
+  - ForText
   layers:
   - Default
   - TransparentFX
@@ -15,8 +17,8 @@ TagManager:
   - OP
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Bot
   - 
   - 
   - 

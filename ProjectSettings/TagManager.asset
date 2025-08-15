@@ -10,6 +10,8 @@ TagManager:
   - Platforms
   - Ellipse
   - ForText
+  - GameTimer
+  - SFX
   layers:
   - Default
   - TransparentFX

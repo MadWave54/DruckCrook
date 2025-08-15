@@ -8,6 +8,7 @@ public class Pause : MonoBehaviour
 {
 
     [SerializeField] private GameObject pauseUI;
+    [SerializeField] private Animator animatorPauseUI, animatorTag;
 
     [SerializeField] private GameObject[] tags;
 
@@ -200,14 +201,18 @@ public class Pause : MonoBehaviour
         if (!isOpen)
         {
 
-            tags[0].SetActive(false);
-            tags[1].SetActive(true);
+            StartCoroutine(AnimatorResetUI());
 
-            pauseUI.SetActive(true);
+            //tags[0].SetActive(false);
+            //tags[1].SetActive(true);
+
+            //pauseUI.SetActive(true);
 
             icon.sprite = iconSprites[1];
 
             Time.timeScale = 0;
+
+            //StartCoroutine(AnimatorResetUI);
 
             isOpen = true;
 
@@ -216,10 +221,12 @@ public class Pause : MonoBehaviour
         else if (isOpen)
         {
 
+            StartCoroutine(AnimatorResetUI());
+
             tags[0].SetActive(true);
             tags[1].SetActive(false);
 
-            pauseUI.SetActive(false);
+            //pauseUI.SetActive(false);
 
             icon.sprite = iconSprites[0];
 
@@ -236,7 +243,18 @@ public class Pause : MonoBehaviour
 
         Time.timeScale = 1;
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        try
+        {
+
+            GameObject.FindGameObjectWithTag("SceneSwap").GetComponent<SceneSwap>().NextScene(SceneManager.GetActiveScene().name);
+
+        }
+        catch (System.Exception ex)
+        {
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        }
 
     }
 
@@ -245,7 +263,61 @@ public class Pause : MonoBehaviour
 
         Time.timeScale = 1;
 
-        SceneManager.LoadScene("Menu");
+        try
+        {
+
+            GameObject.FindGameObjectWithTag("SceneSwap").GetComponent<SceneSwap>().NextScene("Menu");
+
+        }
+        catch (System.Exception ex)
+        {
+
+            SceneManager.LoadScene("Menu");
+
+        }
+
+    }
+
+    private IEnumerator AnimatorResetUI()
+    {
+
+        bool isUI = false;
+
+        if (!pauseUI.active)
+        {
+
+            isUI = true;
+
+            pauseUI.SetActive(true);
+
+            animatorTag.SetBool("isOpen", !animatorTag.GetBool("isOpen"));
+
+            yield return new WaitForEndOfFrame();
+            yield return new WaitWhile(() => animatorTag.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f || animatorTag.IsInTransition(0));
+
+            tags[0].SetActive(false);
+            tags[1].SetActive(true);
+
+        }
+
+        animatorPauseUI.SetBool("isOpen", !animatorPauseUI.GetBool("isOpen"));
+
+        yield return new WaitForEndOfFrame();
+        yield return new WaitWhile(() => animatorPauseUI.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f || animatorPauseUI.IsInTransition(0));
+
+        if (pauseUI.active && !isUI)
+        {
+
+            pauseUI.SetActive(false);
+            tags[1].SetActive(false);
+            tags[0].SetActive(true);
+
+            animatorTag.SetBool("isOpen", !animatorTag.GetBool("isOpen"));
+
+            yield return new WaitForEndOfFrame();
+            yield return new WaitWhile(() => animatorTag.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f || animatorTag.IsInTransition(0));
+
+        }
 
     }
 

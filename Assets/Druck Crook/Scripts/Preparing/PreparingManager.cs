@@ -10,8 +10,17 @@ public class PreparingManager : MonoBehaviour
     [SerializeField] private float WaitTime;
     [SerializeField] private TextMeshProUGUI WaitPercentText;
 
+    [SerializeField] private GameObject[] Prafabs;
+
     private void Start()
     {
+
+        foreach (var Prefab in Prafabs)
+        {
+
+            DontDestroyOnLoad(Instantiate(Prefab));
+
+        }
 
         StartCoroutine(TextAnimation());
 

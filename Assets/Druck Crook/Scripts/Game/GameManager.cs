@@ -17,8 +17,25 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI textTag;
 
+    [SerializeField] private Animator[] animators;
+
+    [SerializeField] private AudioClip[] Clips;
+
+    private AudioSource SFX;
+
     private void Start()
     {
+
+        try
+        {
+
+            SFX = GameObject.FindGameObjectWithTag("SFX").GetComponent<AudioSource>();
+
+        }
+        catch (System.Exception ex)
+        {
+
+        }
 
         if (isCompany)
         {
@@ -32,11 +49,24 @@ public class GameManager : MonoBehaviour
     public void Lose()
     {
 
-        isLose = true;
+        if (!isLose)
+        {
 
-        UILose.SetActive(true);
+            isLose = true;
 
-        Time.timeScale = 0;
+            if (SFX != null)
+            {
+
+                SFX.clip = Clips[0];
+                SFX.Play();
+
+            }
+
+            UILose.SetActive(true);
+
+            Time.timeScale = 0;
+
+        }
 
     }
 
@@ -49,6 +79,14 @@ public class GameManager : MonoBehaviour
         {
 
             isWin = true;
+
+            if (SFX != null)
+            {
+
+                SFX.clip = Clips[1];
+                SFX.Play();
+
+            }
 
             if (isCompany)
             {
@@ -72,7 +110,18 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1;
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        try
+        {
+
+            GameObject.FindGameObjectWithTag("SceneSwap").GetComponent<SceneSwap>().NextScene(SceneManager.GetActiveScene().name);
+
+        }
+        catch (System.Exception ex)
+        {
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        }
 
     }
 
@@ -81,12 +130,30 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1;
 
-        SceneManager.LoadScene("Menu");
+        try
+        {
+
+            GameObject.FindGameObjectWithTag("SceneSwap").GetComponent<SceneSwap>().NextScene("Menu");
+
+        }
+        catch (System.Exception ex)
+        {
+
+            SceneManager.LoadScene("Menu");
+
+        }
 
     }
 
     private void Update()
     {
+
+        foreach (var item in animators)
+        {
+
+            item.Update(Time.unscaledDeltaTime * 1f);
+
+        }
 
         if (isArcade)
         {

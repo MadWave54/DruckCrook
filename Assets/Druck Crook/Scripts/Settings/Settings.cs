@@ -229,6 +229,28 @@ public class Settings : MonoBehaviour
     public void ResetAccept()
     {
 
+        PlayerPrefs.DeleteAll();
+
+        PlayerPrefs.SetInt("Set", 1);
+        PlayerPrefs.SetInt("isBought_0", 1);
+        PlayerPrefs.SetFloat("Music", 1);
+        PlayerPrefs.SetFloat("SFX", 1);
+        PlayerPrefs.SetFloat("Vibration", 1);
+        PlayerPrefs.SetInt("TimeInGame", 0);
+
+        PlayerPrefs.Save();
+
+        try
+        {
+
+            GameObject.FindGameObjectWithTag("GameTimer").GetComponent<GameTimeTracker>().Restart();
+
+        }
+        catch (System.Exception ex)
+        {
+
+        }
+
         StartCoroutine(AnimatorResetUI());
 
     }

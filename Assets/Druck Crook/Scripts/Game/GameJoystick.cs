@@ -9,7 +9,7 @@ public class GameJoystick : MonoBehaviour
     [SerializeField] private float maxHeight;
     private float startY;
 
-    private GameObject circleInstance, circleInstanceNew;
+    public GameObject circleInstance, circleInstanceNew, circleInstanceWas;
     private LineRenderer lineRenderer;
 
     private Rigidbody2D rigidbody;
@@ -24,6 +24,9 @@ public class GameJoystick : MonoBehaviour
     private bool isFly, isRope, isReadyToFly;
 
     private Ellipse ellipseScriptSave;
+
+    private float timer = 0f;
+    private const float secondsInRope = 1;
 
     private void Start()
     {
@@ -43,6 +46,8 @@ public class GameJoystick : MonoBehaviour
         lineRenderer.enabled = false;
 
         isReadyToFly = true;
+
+        circleInstanceWas = null;
 
     }
 
@@ -80,22 +85,45 @@ public class GameJoystick : MonoBehaviour
             else if (!isFly && transform.position.y >= startY)
             {
 
-                if (circleInstanceNew != null)
+                //Debug.Log("NewRope");
+
+                if (circleInstanceNew != null && circleInstanceNew != circleInstanceWas)
                 {
 
+                    circleInstanceWas = circleInstance;
                     circleInstance = circleInstanceNew;
                     circleInstanceNew = null;
 
+                    ellipseScriptSave = circleInstance.GetComponent<Ellipse>();
+
+                    float distanceX = Mathf.Abs(transform.position.x - circleInstance.transform.position.x);
+
+                    if (!ellipseScriptSave.isDisposable && distanceX <= 3f)
+                    {
+
+                        Rope();
+
+                        isFly = true;
+
+                    }
+
                 }
 
-                float distanceX = Mathf.Abs(transform.position.x - circleInstance.transform.position.x);
-
-                if (!ellipseScriptSave.isDisposable && distanceX <= 2)
+                else
                 {
 
-                    Rope();
+                    ellipseScriptSave = circleInstance.GetComponent<Ellipse>();
 
-                    isFly = true;
+                    float distanceX = Mathf.Abs(transform.position.x - circleInstance.transform.position.x);
+
+                    if (!ellipseScriptSave.isDisposable && distanceX <= 1.8f)
+                    {
+
+                        Rope();
+
+                        isFly = true;
+
+                    }
 
                 }
 
@@ -110,6 +138,29 @@ public class GameJoystick : MonoBehaviour
             {
 
                 Rope();
+
+            }
+
+            if (isRope)
+            {
+
+                timer += Time.deltaTime;
+
+                float boostForce = 0.3f;
+
+                if (timer >= secondsInRope)
+                {
+
+                    Vector2 dir = rigidbody.position - (Vector2)circleInstance.transform.position;
+                    Vector2 tangent = new Vector2(-dir.y, dir.x).normalized;
+
+                    float side = Mathf.Sign(Vector2.Dot(tangent, rigidbody.velocity));
+
+                    rigidbody.AddForce(tangent * side * boostForce);
+
+                    timer -= secondsInRope;
+
+                }
 
             }
 
@@ -134,6 +185,8 @@ public class GameJoystick : MonoBehaviour
     private void Fall()
     {
 
+        //Debug.Log("Fall");
+
         ellipseScriptSave = circleInstance.GetComponent<Ellipse>();
 
         if (ellipseScriptSave.UsedEllipse)
@@ -151,10 +204,14 @@ public class GameJoystick : MonoBehaviour
 
         lineRenderer.enabled = false;
 
+        timer = 0;
+
     }
 
     private void Jump()
     {
+
+        //Debug.Log("Jump");
 
         isFly = true;
 
@@ -210,7 +267,7 @@ public class GameJoystick : MonoBehaviour
         else if (!isFly && collision.tag == "Ellipse" && !isRope)
         {
 
-            if (circleInstance != collision.gameObject && collision.transform.position.x > circleInstance.transform.position.x)
+            if (circleInstance != collision.gameObject)
             {
 
                 circleInstanceNew = collision.gameObject;

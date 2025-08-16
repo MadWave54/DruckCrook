@@ -20,7 +20,7 @@ public class BotMove : MonoBehaviour
     private float checkDistance = 0.15f;
     [SerializeField] private LayerMask groundLayer;
 
-    private bool isFly, isRope, isReadyToFly, isStopIn;
+    private bool isFly, isRope, isReadyToFly;
 
     private Ellipse ellipseScriptSave;
 
@@ -62,14 +62,14 @@ public class BotMove : MonoBehaviour
 
             }
 
-            //else if (transform.position.x >= PlatformX)
-            //{
+            else if (transform.position.x >= PlatformX)
+            {
 
-            //    rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
+                rigidbody.velocity = new Vector2(0, 0);
 
-            //    Fall();
+                Fall();
 
-            //}
+            }
 
             lineRenderer.SetPosition(0, new Vector3(transform.position.x, transform.position.y, 0.02f));
             lineRenderer.SetPosition(1, new Vector3(circleInstance.transform.position.x, circleInstance.transform.position.y, 0.02f));
@@ -104,13 +104,6 @@ public class BotMove : MonoBehaviour
 
         }
 
-        //if (isStopIn)
-        //{
-
-        //    rigidbody.velocity = new Vector2(0, 0);
-
-        //}
-
     }
 
     private void Fall()
@@ -127,8 +120,6 @@ public class BotMove : MonoBehaviour
 
         if (ellipseScriptSave.isFinish)
         {
-
-            isStopIn = true;
 
             rigidbody.velocity = new Vector2(0, 0);
 
@@ -265,8 +256,6 @@ public class BotMove : MonoBehaviour
 
             }
 
-            isStopIn = false;
-
             isReadyToFly = true;
 
         }
@@ -283,8 +272,6 @@ public class BotMove : MonoBehaviour
                 ellipseScriptSave.BotInPlatform();
 
             }
-
-            isStopIn = false;
 
             isReadyToFly = true;
 

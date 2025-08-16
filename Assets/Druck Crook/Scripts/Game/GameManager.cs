@@ -151,7 +151,12 @@ public class GameManager : MonoBehaviour
         foreach (var item in animators)
         {
 
-            item.Update(Time.unscaledDeltaTime * 1f);
+            if (item.gameObject.active)
+            {
+
+                item.Update(Time.unscaledDeltaTime * 1f);
+
+            }
 
         }
 

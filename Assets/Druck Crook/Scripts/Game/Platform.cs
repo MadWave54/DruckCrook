@@ -77,26 +77,26 @@ public class Platform : MonoBehaviour
 
                 int Count = Camera.main.GetComponent<GameManager>().PlatformsCount;
 
+                if (ThisSample == 3)
+                {
+
+                    multiplier = 2;
+
+                }
+
+                else if (ThisSample == 4)
+                {
+
+                    multiplier = 3;
+
+                }
+
                 if (Count < 3 + PlayerPrefs.GetInt("Level_Int"))
                 {
 
                     Camera.main.GetComponent<GameManager>().PlatformsCount++;
 
                     int Sample = Random.Range(0, platformTemplates.Length - 1);
-
-                    if (ThisSample == 3)
-                    {
-
-                        multiplier = 2;
-
-                    }
-
-                    else if (ThisSample == 4)
-                    {
-
-                        multiplier = 3;
-
-                    }
 
                     objectPlatformNext = Instantiate(platformTemplates[Sample], new Vector3(mainPositions.position.x + 4.292f * multiplier, mainPositions.position.y, mainPositions.position.z), Quaternion.identity, GameObject.FindGameObjectWithTag("Platforms").transform).transform.Find("Platform").gameObject;
 

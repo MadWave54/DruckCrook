@@ -61,9 +61,17 @@ workflows:
 
       - name: Build IPA
         script: |
-          xcode-project build-ipa \
-            --workspace "$UNITY_IOS_DIR/$XCODE_WORKSPACE" \
-            --scheme "$XCODE_SCHEME"
+          if [ -f "$UNITY_IOS_DIR/$XCODE_WORKSPACE" ]; then
+            echo "Found xcworkspace, building with workspace..."
+            xcode-project build-ipa \
+              --workspace "$UNITY_IOS_DIR/$XCODE_WORKSPACE" \
+              --scheme "$XCODE_SCHEME"
+          else
+            echo "No xcworkspace found, building with xcodeproj..."
+            xcode-project build-ipa \
+              --project "$UNITY_IOS_DIR/Unity-iPhone.xcodeproj" \
+              --scheme "$XCODE_SCHEME"
+          fi
 
     artifacts:
       - build/ios/ipa/*.ipa

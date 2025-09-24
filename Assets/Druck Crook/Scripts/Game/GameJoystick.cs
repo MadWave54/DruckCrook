@@ -154,7 +154,7 @@ public class GameJoystick : MonoBehaviour
                     Vector2 dir = rigidbody.position - (Vector2)circleInstance.transform.position;
                     Vector2 tangent = new Vector2(-dir.y, dir.x).normalized;
 
-                    float side = Mathf.Sign(Vector2.Dot(tangent, rigidbody.velocity));
+                    float side = Mathf.Sign(Vector2.Dot(tangent, rigidbody.linearVelocity));
 
                     rigidbody.AddForce(tangent * side * boostForce);
 
@@ -224,7 +224,7 @@ public class GameJoystick : MonoBehaviour
 
         isRope = true;
 
-        rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
+        rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, 0);
 
         joint = gameObject.AddComponent<SpringJoint2D>();
         joint.connectedBody = circleInstance.GetComponent<Rigidbody2D>();

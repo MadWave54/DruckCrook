@@ -65,7 +65,7 @@ public class BotMove : MonoBehaviour
             else if (transform.position.x >= PlatformX)
             {
 
-                rigidbody.velocity = new Vector2(0, 0);
+                rigidbody.linearVelocity = new Vector2(0, 0);
 
                 Fall();
 
@@ -121,7 +121,7 @@ public class BotMove : MonoBehaviour
         if (ellipseScriptSave.isFinish)
         {
 
-            rigidbody.velocity = new Vector2(0, 0);
+            rigidbody.linearVelocity = new Vector2(0, 0);
 
         }
 
@@ -141,7 +141,7 @@ public class BotMove : MonoBehaviour
         if (!isFly)
         {
 
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
+            rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, 0);
 
             isFly = true;
 
@@ -156,7 +156,7 @@ public class BotMove : MonoBehaviour
 
         isRope = true;
 
-        rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
+        rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, 0);
 
         joint = gameObject.AddComponent<SpringJoint2D>();
         joint.connectedBody = circleInstance.GetComponent<Rigidbody2D>();

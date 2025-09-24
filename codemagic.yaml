@@ -6,7 +6,7 @@ workflows:
     environment:
       xcode: latest
       cocoapods: default
-      unity: 6000.0.56f1
+      unity: 6000.1.5f1
       groups:
         - app_store_credentials
         - certificate_credentials

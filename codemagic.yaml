@@ -1,22 +1,18 @@
 workflows:
-  unity-ios:
-    name: Unity iOS (first release, no push)
+  unity-ios-no-push:
+    name: Unity iOS (first release, NO PUSH)
     max_build_duration: 120
 
     environment:
       xcode: latest
-      cocoapods: default
-      unity: 6000.0.58f1
+      unity: 6000.0.56f1
       groups:
-        - app_store_credentials
-        - certificate_credentials
-        - unity_credentials
+        - app_store_credentials          # APP_STORE_CONNECT_*
+        - certificate_credentials        # CERTIFICATE_PRIVATE_KEY, CERTIFICATE_PRIVATE_KEY_PASSWORD
+        - unity_credentials              # UNITY_EMAIL, UNITY_PASSWORD, UNITY_SERIAL
       vars:
-        # Только основной bundle id, без NSE
         BUNDLE_ID: com.molonabv.druckcrookgluck
         APP_STORE_APPLE_ID: 6752902759
-
-        # Пути/схемы после экспорта Unity
         UNITY_IOS_DIR: ios
         XCODE_WORKSPACE: Unity-iPhone.xcworkspace
         XCODE_SCHEME: Unity-iPhone
@@ -39,13 +35,7 @@ workflows:
             -executeMethod BuildScript.BuildIos \
             -nographics
 
-      - name: Install CocoaPods
-        script: |
-          cd "$UNITY_IOS_DIR"
-          pod install
-
-      # Только основной App ID
-      - name: Fetch signing files (app only)
+      - name: Fetch signing files (APP ONLY)
         script: |
           export APPSTORE_CONNECT_KEY_ID="$APP_STORE_CONNECT_KEY_IDENTIFIER"
           export APPSTORE_CONNECT_ISSUER_ID="$APP_STORE_CONNECT_ISSUER_ID"
@@ -60,16 +50,16 @@ workflows:
       - name: Use system default keychain
         script: keychain add-certificates
 
-      - name: Apply provisioning profiles to Xcode project
+      - name: Apply provisioning profiles
         script: xcode-project use-profiles
 
-      - name: Increment build number safely
+      - name: Increment build number
         script: |
           LATEST=$(app-store-connect get-latest-testflight-build-number "$APP_STORE_APPLE_ID" || app-store-connect get-latest-app-store-build-number "$APP_STORE_APPLE_ID" || echo 0)
           cd "$UNITY_IOS_DIR"
           agvtool new-version -all $((LATEST + 1))
 
-      - name: Build ipa for distribution
+      - name: Build IPA
         script: |
           xcode-project build-ipa \
             --workspace "$UNITY_IOS_DIR/$XCODE_WORKSPACE" \
